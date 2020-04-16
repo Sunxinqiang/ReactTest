@@ -48,3 +48,16 @@ ol, ul {
 .game-info {
   margin-left: 20px;
 }
+
+.active {
+  font-weight: bold;
+  color: green;
+}
+.active button{
+  border: 2px solid green;
+  font-weight: bold;
+  color: green;
+}
+.win {
+  color: green;
+}
