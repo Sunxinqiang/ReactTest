@@ -69,7 +69,7 @@ class ProductTable extends React.Component {
 
 class SearchBar extends React.Component {
   render() {
-    if (Math.random() > 0.5) {
+    if (Math.random() > 0.7) {
       throw new Error('抛出个错误')
     }
     return (
