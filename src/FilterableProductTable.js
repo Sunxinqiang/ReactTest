@@ -1,6 +1,6 @@
 import React from 'react';
 import './FilterableProductTable.css'
-
+import {AppContext} from './appContext'
 class ProductCategoryRow extends React.Component {
   render() {
     const category = this.props.category;
@@ -69,24 +69,31 @@ class ProductTable extends React.Component {
 
 class SearchBar extends React.Component {
   render() {
+    if (Math.random() > 0.5) {
+      throw new Error('抛出个错误')
+    }
     return (
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={this.props.filterText}
-          onChange={this.props.onInputChange}
-        />
-        <p>
-          <input
-            type="checkbox"
-            onChange={this.props.onCheckboxChange}
-            checked={this.props.isStockOnly}
-          />
-          {' '}
-          Only show products in stock
-        </p>
-      </form>
+      <AppContext.Consumer>
+        {theme => (
+          <form>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={this.props.filterText}
+              onChange={this.props.onInputChange}
+            />
+            <p>
+              <input
+                type="checkbox"
+                onChange={this.props.onCheckboxChange}
+                checked={this.props.isStockOnly}
+              />
+              {' '}
+              <span style={theme}>Only show products in stock</span>
+            </p>
+          </form>
+        )}
+      </AppContext.Consumer>
     );
   }
 }
