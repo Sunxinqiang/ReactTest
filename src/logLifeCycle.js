@@ -22,7 +22,7 @@ export default function (WrappedComponent, notLog = false) {
     }
   }();
 
-  return class extends React.Component {
+  class LogLifeCycle extends React.Component {
 
     // mount
     constructor (props) {
@@ -82,4 +82,6 @@ export default function (WrappedComponent, notLog = false) {
     //   log('UNSAFE_componentWillMount')
     // }
   }
+  LogLifeCycle.displayName = 'LogLifeCycle'
+  return LogLifeCycle
 }
