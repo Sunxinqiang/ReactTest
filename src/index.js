@@ -7,7 +7,16 @@ import {AppContext, theme} from './appContext'
 
 import ErrorBoundary from './ErrorBoundary'
 
-const FilterableProductTable = lazy(() => import('./FilterableProductTable'))
+import logLifeCycle from './logLifeCycle'
+
+
+const FilterableProductTable = lazy(
+  () => import('./FilterableProductTable').then(module => {
+    return {
+      default: logLifeCycle(module.default)
+    }
+  })
+)
 const Calculator = lazy(() => import('./Calculator'))
 const Game = lazy(() => import('./Game'))
 
