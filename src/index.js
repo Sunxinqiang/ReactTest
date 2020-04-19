@@ -35,8 +35,17 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      theme: theme.light
+      theme: theme.light,
+      productData
     }
+    this.onProductChange = this.onProductChange.bind(this)
+  }
+  onProductChange () {
+    this.setState(state => {
+      return {
+        productData: state.productData.slice(2)
+      }
+    })
   }
   render () {
     return (
@@ -46,7 +55,8 @@ class App extends React.Component {
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
                 <Route exact path="/">
-                  <FilterableProductTable products={productData}/>
+                  <button onClick={this.onProductChange} >changeProduct</button>
+                  <FilterableProductTable products={this.state.productData}/>
                 </Route>
                 <Route path="/c" component={Calculator}/>
                 <Route path="/Game" component={Game}/>
